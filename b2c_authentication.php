@@ -71,10 +71,25 @@ function b2c_logout() {
 function b2c_verify_token() {
 	try {
 		if (isset($_POST['error'])) {
-			echo 'Unable to log in';
-			echo '<br/>error:' . $_POST['error'];
-			echo '<br/>error_description:' . $_POST['error_description'];
-			exit;
+
+			if(strpos($_POST['error_description'],"AADB2C90118") !==FALSE) {
+				//Redirect to Password Reset
+				$b2c_endpoint_handler = new B2C_Endpoint_Handler(B2C_Settings::$PWReset_policy);
+				$authorization_endpoint = $b2c_endpoint_handler->get_authorization_endpoint().'&state=PWReset';
+				wp_redirect($authorization_endpoint);
+				exit;
+			}
+			elseif (strpos($_POST['error'], "Access_Denied")) {
+				//User canceled sign in - redirect to home
+				wp_redirect(home_url());
+				exit;
+			}
+			else 
+				echo 'Unable to log in';
+				echo '<br/>error:' . $_POST['error'];
+				echo '<br/>error_description:' . $_POST['error_description'];
+				exit;
+			}
 		}
 
 		if (isset($_POST[B2C_RESPONSE_MODE])) {	
