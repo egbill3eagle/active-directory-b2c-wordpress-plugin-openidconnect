@@ -84,7 +84,7 @@ function b2c_verify_token() {
 				wp_redirect(home_url());
 				exit;
 			}
-			else 
+			else {
 				echo 'Unable to log in';
 				echo '<br/>error:' . $_POST['error'];
 				echo '<br/>error_description:' . $_POST['error_description'];

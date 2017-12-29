@@ -266,7 +266,7 @@ class B2C_Settings_Page
          printf(
             '<input type="text" id="b2c_pwreset_policy_id" name="b2c_config_elements[b2c_pwreset_policy_id]" value="%s" />',
             isset( $this->options['b2c_pwreset_policy_id'] ) ? esc_attr( $this->options['b2c_pwreset_policy_id']) : ''
-         )
+         );
      }
 	
 	/** 
