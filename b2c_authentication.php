@@ -79,7 +79,7 @@ function b2c_verify_token() {
 				wp_redirect($authorization_endpoint);
 				exit;
 			}
-			elseif (strpos($_POST['error'], "Access_Denied")) {
+			elseif (strpos($_POST['error'], "Access_Denied") !== FALSE) {
 				//User canceled sign in - redirect to home
 				wp_redirect(home_url());
 				exit;
