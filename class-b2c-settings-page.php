@@ -113,6 +113,14 @@ class B2C_Settings_Page
             'b2c-settings-page', // Page
             'service_config_section' // Section           
         );
+
+        add_settings_field(
+            'b2c_pwreset_policy_id', //ID
+            'Password Reset Policy', // Title
+            array ($this, 'b2c_pwreset_policy_id_callback'), //Callback
+            'b2c-settings-page', // Page
+            'service_config_section' // Section
+        );
 		
 		add_settings_field(
             'b2c_verify_tokens', // ID
@@ -169,6 +177,9 @@ class B2C_Settings_Page
 
         if( isset( $input['b2c_edit_profile_policy_id'] ) )
             $new_input['b2c_edit_profile_policy_id'] = sanitize_text_field(strtolower( $input['b2c_edit_profile_policy_id'] ));
+
+        if( isset( $input['b2c_pwreset_policy_id'] ) )
+            $new_input['b2c_pwreset_policy_id'] = sanitize_text_field(strtolower( $input['b2c_pwreset_policy_id'] ));
 		
         $new_input['b2c_verify_tokens'] = $input['b2c_verify_tokens'];
 
@@ -246,6 +257,17 @@ class B2C_Settings_Page
             isset( $this->options['b2c_edit_profile_policy_id'] ) ? esc_attr( $this->options['b2c_edit_profile_policy_id']) : ''
         );
     }
+
+    /**
+     *
+     */
+     public function b2c_pwreset_policy_id_callback()
+     {
+         printf(b2c_pwreset_policy_id
+            '<input type="text" id="b2c_pwreset_policy_id" name="b2c_config_elements[b2c_pwreset_policy_id]" value="%s" />',
+            isset( $this->options['b2c_pwreset_policy_id'] ) ? esc_attr( $this->options['b2c_pwreset_policy_id']) : ''
+         )
+     }
 	
 	/** 
      * Get the settings option array and print one of its values

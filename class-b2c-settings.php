@@ -13,6 +13,7 @@ class B2C_Settings {
 	public static $b2cAdmins = 1;
 	public static $graphID = "";
 	public static $clientSecret = "";
+	public static $PWReset_policy = "";
 	
 	// These settings define the authentication flow, but are not configurable on the settings page
 	// because this plugin is made to support OpenID Connect implicit flow with form post responses
@@ -41,6 +42,7 @@ class B2C_Settings {
 			else self::$b2cAdmins = 0;
 			self::$clientSecret = $config_elements['b2c_client_secret'];
 			self::$graphID = $config_elements['b2c_graph_id'];
+			self::$PWReset_policy = $config_elements['b2c_pwreset_policy_id'];
 		}
 	}
 

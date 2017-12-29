@@ -104,6 +104,9 @@ function b2c_verify_token() {
 				case 'edit_profile':
 					$policy = B2C_Settings::$edit_profile_policy;
 					break;
+				case 'PWReset':
+					$policy = B2C_Settings::$PWReset_policy;
+					break;
 				default:
 					// Not a B2C request, ignore.
 					return;
